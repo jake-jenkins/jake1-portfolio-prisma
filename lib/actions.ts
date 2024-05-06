@@ -15,6 +15,11 @@ export const getProject = cache(async (slug: string): Promise<Project> => {
   return project[0]
 })
 
+export const getProjects = cache(async (): Promise<Project[]> => {
+  const projects = await prisma.project.findMany()
+  return projects
+})
+
 export const getCategory = cache(async (slug?: string): Promise<Category[]> => {
   if (slug) {
     const category = await prisma.category.findMany({

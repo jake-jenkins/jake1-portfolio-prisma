@@ -2,7 +2,7 @@ export type Project = {
     slug: string
     title: string
     summary: string
-    imageUrl: string
+    imageUrl?: string
     category?: Category
     tags?: Tag[]
     categorySlug: string
