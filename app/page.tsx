@@ -30,6 +30,26 @@ export default async function Home() {
 
       <div className="my-12">
         <H2>Expertise</H2>
+        <div className="grid grid-cols-1 gap-2 mb-8 mt-4 lg:grid-cols-2 xl:grid-cols-3">
+          <ul className="list-disc list-inside">
+            <li>Front end architecture and frameworks</li>
+            <li>NextJs</li>
+            <li>NodeJs</li>
+            <li>HTML, CSS and JavaScript</li>
+          </ul>
+          <ul className="list-disc list-inside">
+            <li>Web API</li>
+            <li>Prisma and relational databases (ORM)</li>
+            <li>Authentication</li>
+            <li>Content management systems</li>
+          </ul>
+          <ul className="list-disc list-inside">
+            <li>Web security</li>
+            <li>Multi-lingual support</li>
+            <li>DevOps and deployment</li>
+            <li>Cloud</li>
+          </ul>
+        </div>
       </div>
 
       <H2>Production code trusted by</H2>
