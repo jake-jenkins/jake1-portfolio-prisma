@@ -3,6 +3,8 @@ import { Project } from "@/lib/types";
 import Image from "next/image";
 import { H1, H2, P } from "@/app/components/Typography";
 import Breadcrumb from "@/app/components/Breadcrumb";
+import { TagItem } from "@/app/components/TagItem";
+import type { Tag } from "@/lib/types";
 
 export const revalidate = 3600;
 
@@ -15,7 +17,7 @@ export default async function Page({
 
   return (
     <>
-    <Breadcrumb />
+      <Breadcrumb />
       <div className="heroWrapper">
         <Image
           priority
@@ -32,6 +34,11 @@ export default async function Page({
           <div className="my-12">
             <H2>Summary</H2>
             <P>{data.summary}</P>
+          </div>
+          <div className="my-12">
+            {data.tags?.map((tag: Tag) => (
+              <TagItem key={tag.slug} tag={tag} />
+            ))}
           </div>
         </div>
       </div>
