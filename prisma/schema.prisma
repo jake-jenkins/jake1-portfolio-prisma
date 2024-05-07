@@ -27,5 +27,4 @@ model Project {
   category     Category @relation(fields: [categorySlug], references: [slug])
   categorySlug String
   tags         Tag[]
-  updated      DateTime @updatedAt
 }
