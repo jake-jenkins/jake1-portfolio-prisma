@@ -20,7 +20,7 @@ export default async function Home() {
       <div className="my-12">
         <H2>Welcome</H2>
         <P>
-          Jake is a Frontend Lead Developer with a range of skills and expertise
+          Jake Jenkins is a Lead Front end Developer with a range of skills and expertise
           to help businesses transform their online presence to help become
           market leaders. Jake has proven experience of delivering excellent
           user experience and meeting complex business challenges to deliver
@@ -53,7 +53,6 @@ export default async function Home() {
       </div>
 
       <H2>Production code trusted by</H2>
-
       <div className="mt-8 grid grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="flex justify-center items-center h-16 border py-16 rounded-2xl border-slate-400">
           <svg viewBox="0 0 46.344 50" width="46.344pt" height="50pt">
