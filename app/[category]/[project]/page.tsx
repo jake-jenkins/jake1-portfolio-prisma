@@ -1,5 +1,5 @@
-import { getProject } from "@/lib/actions";
-import { Project } from "@/lib/types";
+import { getCategory, getProject, getProjects } from "@/lib/actions";
+import { Project, Category } from "@/lib/types";
 import Image from "next/image";
 import { H1, H2, P } from "@/app/components/Typography";
 import Breadcrumb from "@/app/components/Breadcrumb";
@@ -7,6 +7,23 @@ import { TagItem } from "@/app/components/TagItem";
 import type { Tag } from "@/lib/types";
 
 export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const pages = await getProjects();
+  return pages.map((project: Project) => ({ slug: [project.slug] }));
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { category: string; project: string };
+}) {
+  const project: Project = await getProject(params.project);
+  const category: Category[] = await getCategory(params.category);
+  return {
+    title: project.title + " - " + category[0].title + " | Jake1.net",
+  };
+}
 
 export default async function Page({
   params,
