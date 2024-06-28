@@ -1,18 +1,18 @@
 import Image from "next/image";
-import { getCategory } from "@/lib/actions";
+import { getCategories } from "@/actions";
 import { H2, P } from "@/app/components/Typography";
 import CategoryCard from "@/app/components/CategoryCard";
 import Hero from "./components/Hero";
 
 export default async function Home() {
-  const categories = await getCategory();
+  const categories = await getCategories();
 
   return (
     <>
       <Hero title="Delivering awesome web experiences." xL />
 
       <div className="grid grid-cols-1 gap-8 my-12 lg:grid-cols-2 xl:grid-cols-3">
-        {categories.map((category: any) => (
+        {categories?.map((category: any) => (
           <CategoryCard key={category.slug} category={category} />
         ))}
       </div>
