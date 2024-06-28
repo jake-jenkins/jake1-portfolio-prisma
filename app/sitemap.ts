@@ -1,6 +1,5 @@
-import { getCategory, getProjects, getTag } from "@/lib/actions"
-import { Project, Tag } from "@/lib/types"
-import { Category } from "@prisma/client"
+import { getCategories, getProjects, getTags } from "@/actions"
+
 
 export const baseUrl = "https://www.jake1.net"
 
@@ -29,22 +28,22 @@ async function buildSiteMap() {
         }
     ]
 
-    const categories: Category[] = await getCategory()
-    const tags: Tag[] = await getTag()
-    const projects: Project[] = await getProjects()
+    const categories = await getCategories()
+    const tags = await getTags()
+    const projects = await getProjects()
 
-    categories.map((category: Category) => {
+    categories?.map((category: any) => {
         let res = buildEntry(category, "weekly", 0.8)
         urls.push(res)
     })
 
-    tags.map((tag: Tag) => {
+    tags?.map((tag: any) => {
         let res = buildEntry(tag, "weekly", 0.8, "tech")
         urls.push(res)
     })
 
-    projects.map((project: Project) => {
-        let res = buildEntry(project, "weekly", 0.5, project.categorySlug)
+    projects?.map((project: any) => {
+        let res = buildEntry(project, "weekly", 0.5, project.category)
         urls.push(res)
     })
 

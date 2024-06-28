@@ -1,13 +1,10 @@
 import Hero from "@/app/components/Hero";
 import ProjectGrid from "@/app/components/ProjectGrid";
-import { getTag } from "@/lib/actions";
-import { Tag } from "@/lib/types";
-
-export const revalidate = 3600;
+import { getProjects, getTag, getTags } from "@/actions";
 
 export async function generateStaticParams() {
-  const tags: Tag[] = await getTag();
-  return tags.map((tag: Tag) => ({ slug: [tag.slug] }));
+  const tags = await getTags();
+  return tags.map((tag: any) => ({ slug: [tag.slug] })) || [];
 }
 
 export async function generateMetadata({
@@ -15,20 +12,20 @@ export async function generateMetadata({
 }: {
   params: { tag: string };
 }) {
-  const tag: Tag[] = await getTag(params.tag);
+  const tagObj = await getTag(params.tag);
   return {
-    title: tag[0].title + " | Jake1.net",
+    title: tagObj.name + " | Jake1.net",
   };
 }
 
 export default async function Page({ params }: { params: { tag: string } }) {
-  const data: Tag[] = await getTag(params.tag);
-  const tag = data[0]
+  const tagObj = await getTag(params.tag);
+  const projects = await getProjects(null, params.tag);
 
   return (
     <>
-      <Hero title={tag.title} />
-      <ProjectGrid projects={tag.projects} />
+      <Hero title={tagObj.name} />
+      <ProjectGrid projects={projects} />
     </>
   );
 }
