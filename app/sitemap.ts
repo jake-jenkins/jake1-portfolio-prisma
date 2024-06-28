@@ -43,7 +43,7 @@ async function buildSiteMap() {
     })
 
     projects?.map((project: any) => {
-        let res = buildEntry(project, "weekly", 0.5, project.category)
+        let res = buildEntry(project, "weekly", 0.5, project.expand.category.slug)
         urls.push(res)
     })
 
